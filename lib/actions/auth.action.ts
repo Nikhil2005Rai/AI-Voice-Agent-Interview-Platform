@@ -98,7 +98,6 @@ export async function getCurrentUser(): Promise<User | null> {
             .get()
 
         if(userRecord.exists) return null;
-
         return {
             ...userRecord.data,
             id: userRecord.id,
@@ -113,6 +112,16 @@ export async function getCurrentUser(): Promise<User | null> {
 
 export async function isAuthenticated() {
     const user = getCurrentUser();
-
+    console.log(user)
     return !!user;
 }
+
+export async function logout() {
+    const cookieStore = await cookies();
+  
+    // Clear the session cookie
+    cookieStore.set('session', '', {
+      maxAge: 0,
+      path: '/',
+    });
+  }
