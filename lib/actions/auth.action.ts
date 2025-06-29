@@ -111,8 +111,8 @@ export async function getCurrentUser(): Promise<User | null> {
 }
 
 export async function isAuthenticated() {
-    const user = getCurrentUser();
-    console.log(user)
+    const user = await getCurrentUser();
+    
     return !!user;
 }
 
